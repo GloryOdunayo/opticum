@@ -1,0 +1,9 @@
+node_modules
+.next
+dist
+coverage
+.turbo
+.husky/_/*
+apps/**/.next
+apps/**/node_modules
+package-lock.json

@@ -1,0 +1,10 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "Running lint/test/typecheck before commit..."
+npm run lint || exit 1
+npm test || exit 1
+npm run typecheck || exit 1
+
+echo "Formatting staged files..."
+npx lint-staged || exit 1

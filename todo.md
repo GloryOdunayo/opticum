@@ -4,7 +4,7 @@ Track progress against the Opticum prompt plan. Mark items complete only when co
 
 ## Milestone M0 — Planning & Dual-App Tooling
 - [x] P01: Workspace bootstrap & planning artifacts.
-- [ ] P02: Tooling, CI, and developer workflow automation.
+- [x] P02: Tooling, CI, and developer workflow automation.
 
 ## Milestone M1 — Mock Infrastructure Backbone
 - [ ] P03: Shared design system & UI shell scaffolds.

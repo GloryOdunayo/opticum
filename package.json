@@ -1,0 +1,18 @@
+{
+  "name": "opticum-workspace",
+  "private": true,
+  "scripts": {
+    "lint": "npm run lint --prefix apps/customer && npm run lint --prefix apps/admin",
+    "test": "npm run test --prefix apps/customer && npm run test --prefix apps/admin",
+    "typecheck": "npm run typecheck --prefix apps/customer && npm run typecheck --prefix apps/admin",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json,css,scss}\"",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.4",
+    "@commitlint/config-conventional": "^18.4.4",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.1.1"
+  }
+}

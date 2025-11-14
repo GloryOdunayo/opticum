@@ -22,23 +22,34 @@ Opticum is a Queola-built prototype that simulates both borrower (customer) and 
 
 ## Getting Started
 
-1. Install dependencies per app:
+1. Install root tooling dependencies (installs husky/lint-staged/etc.):
+   ```bash
+   npm install
+   ```
+2. Install dependencies per app:
    ```bash
    cd apps/customer && npm install
    cd ../admin && npm install
    ```
-2. Run a development server:
+3. Run a development server:
    ```bash
    npm run dev        # from inside apps/customer or apps/admin
    ```
-3. Verify linting, tests, and type-checks (each app exposes the same scripts):
+4. Verify linting, tests, and type-checks (either run inside each app or via root helpers):
    ```bash
+   # From repo root executes both apps sequentially
    npm run lint
    npm test
    npm run typecheck
    ```
 
 > NOTE: Smoke tests live in `tests/smoke.test.tsx` for each app and simply assert that the placeholder landing page renders. Update them as soon as real flows exist.
+
+## Tooling & CI
+
+- Husky hooks guard commits by running lint/test/typecheck (across both apps) and `lint-staged` formatting, followed by commitlint checks.
+- GitHub Actions (`.github/workflows/ci.yml`) runs npm install/lint/test/typecheck for both apps on every push/PR using Node.js 20 with npm cache reuse.
+- Formatting uses Prettier (`prettier.config.cjs`) and lint-staged (`.lintstagedrc.json`) so you can run `npm run format` for bulk formatting.
 
 ## Decisions & Glossary
 

@@ -21,12 +21,14 @@ Thanks for helping build Opticum, a dual customer/admin loan-management experien
 
   ```bash
   git clone <repo-url> && cd opticum
-  npm install
-  npm run dev --workspace customer   # start customer app
-  npm run dev --workspace admin      # start admin app
+  npm install                                 # installs husky/lint-staged/tooling deps
+  cd apps/customer && npm install             # install customer deps
+  cd ../admin && npm install                  # install admin deps
   ```
 
-- Linting/testing scripts must be runnable via npm; keep README up to date as tooling evolves.
+  To run a dev server, execute `npm run dev` inside `apps/customer` or `apps/admin`. Husky hooks install automatically via the root `prepare` script; rerun `npm install` at the repo root if they ever break.
+
+- Linting/testing scripts are available both inside each app and via root helpers (`npm run lint|test|typecheck`); keep README up to date as tooling evolves.
 
 ---
 
@@ -45,6 +47,7 @@ Thanks for helping build Opticum, a dual customer/admin loan-management experien
 - Follow [Conventional Commits](https://www.conventionalcommits.org/) with scopes tied to app/area, e.g.:
   - `feat(customer): add onboarding wizard step`
   - `fix(admin): correct collections promise-to-pay`
+- Commitlint (via Husky) enforces the format; fix the message and recommit if the `commit-msg` hook fails.
 - Keep PRs focused. Squash noisy commits before requesting review.
 
 ---
@@ -57,7 +60,7 @@ Thanks for helping build Opticum, a dual customer/admin loan-management experien
   - Mock APIs must stay in `lib/fakeApi` (or equivalent) and support latency simulation plus reset semantics.
   - Shared state belongs in Redux Toolkit slices (`src/state/`); keep reducers, thunks, and selectors mirrored between customer/admin apps.
 - **Testing**
-  - Use Jest/Vitest + React Testing Library for units/components.
+  - Use Jest + React Testing Library for units/components.
   - Use Playwright/Cypress for end-to-end customer/admin golden paths.
 - **Documentation**
   - Update specs, prompt plans, and TODO trackers when behaviour changes.
@@ -69,10 +72,12 @@ Thanks for helping build Opticum, a dual customer/admin loan-management experien
 - Minimum before pushing:
 
   ```bash
-  npm run lint
+  npm run lint        # runs both apps sequentially
   npm test
   npm run typecheck
   ```
+
+- Husky pre-commit hooks run the same commands plus `lint-staged` formatting automatically—do not bypass them unless absolutely necessary.
 
 - Run Playwright/Cypress suites when touching multi-step flows or integration points.
 - Document any manual verification (e.g., “Customer onboarding wizard tested on Chrome/Safari”) inside the PR description.
