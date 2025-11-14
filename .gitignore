@@ -1,0 +1,29 @@
+# Node / Next.js artifacts
+node_modules/
+.next/
+dist/
+.turbo/
+coverage/
+
+# Testing
+*.log
+.vitest/
+
+# Env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build caches
+/.cache/
+pnpm-lock.yaml
+yarn.lock
+package-lock.json

@@ -4,10 +4,10 @@ This document describes the recommended project folder structure for **both** th
 
 ---
 
-# Customer App — `customer/`
+# Customer App — `apps/customer/`
 
 ```
-customer/
+apps/customer/
 ├─ next.config.js                         # Next.js config for Customer app
 ├─ tsconfig.json                           # TypeScript config
 ├─ .env.local.example                      # Example environment variables
@@ -120,10 +120,10 @@ customer/
 
 ---
 
-# Admin App — `admin/`
+# Admin App — `apps/admin/`
 
 ```
-admin/
+apps/admin/
 ├─ next.config.js                           # Next.js config for Admin app
 ├─ tsconfig.json                             # TypeScript config
 ├─ .env.local.example                        # Example environment variables

@@ -1,0 +1,8 @@
+<svg aria-label="Vercel Logo" fill="none" height="32" viewBox="0 0 283 64" width="142" xmlns="http://www.w3.org/2000/svg">
+  <path d="M141.04 16.8l-31.52 46.4L109.92 64l31.52-46.4L141.04 16.8z" fill="black"></path>
+  <path d="M0 64l35.284-52.8L70.568 64H0z" fill="black"></path>
+  <path
+    d="M275.287 0H283l-31.147 46.667L220.706 0h7.627l23.307 35.274L275.287 0zm-93.042 0h-7.64l-31.145 46.667L112.32 0h7.626l23.309 35.274L182.245 0z"
+    fill="#000"
+  ></path>
+</svg>

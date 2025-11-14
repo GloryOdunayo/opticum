@@ -1,7 +1,7 @@
 # Opticum Implementation Blueprint (Spec 2025-02)
 
 ## Context & Objectives
-- Opticum delivers dual interfaces (Customer + Admin) built on Next.js 14 App Router, maintained as two standalone apps (`./customer`, `./admin`) with strict TypeScript, ESLint, and Prettier (`docs/specs/spec.md` §§1–3, 6).
+- Opticum delivers dual interfaces (Customer + Admin) built on Next.js 14 App Router, maintained as two standalone apps (`./apps/customer`, `./apps/admin`) with strict TypeScript, Tailwind CSS, ESLint, and Prettier (`docs/specs/spec.md` §§1–3, 6).
 - Client-side state must be coordinated via Redux Toolkit stores + slices in each app to keep mock auth, applications, and operations synchronized.
 - No backend exists; all flows must rely on mock infrastructure: fake API client, local persistence, seed data, simulated latency, and optional route handlers (`spec.md` §§2, 3, 7).
 - Customer journeys include onboarding, loan discovery, calculator, multi-step applications, status tracking, repayment simulation, and support/ticketing (`spec.md` §4).
@@ -33,7 +33,7 @@
 
 **Milestone M0 — Planning, Workspace & Tooling (Track A)**  
 Goal: Codify architecture decisions, scaffold both standalone apps, align shared configs, lint/test/format scripts, CI skeleton, and developer docs.  
-Scope highlights: Dual Next.js bootstraps (`./customer`, `./admin`), shared tsconfig/eslint/prettier guidance, husky hooks, README/ADR seeds, Storybook/Testing Library scaffolds.  
+Scope highlights: Dual Next.js bootstraps (`./apps/customer`, `./apps/admin`), shared tsconfig/eslint/prettier guidance, husky hooks, README/ADR seeds, Storybook/Testing Library scaffolds.  
 Exit criteria: `npm run lint`, `npm test`, `npm run typecheck` succeed within each app’s CI workflow; developers understand repo layout via docs.
 
 **Milestone M1 — Mock Infrastructure Backbone (Track B/E)**  
@@ -80,7 +80,7 @@ Exit criteria: Running backend swap stub only requires adapter config; e2e tests
 
 ### M0 — Planning, Workspace & Tooling
 - `M0.1` Record architecture decisions, glossary, and contribution guidelines referencing `docs/specs/spec.md`.
-- `M0.2` Bootstrap `./customer` and `./admin` as separate Next.js 14 TypeScript apps with aligned npm scripts (`dev`, `build`, `lint`, `test`, `typecheck`).
+- `M0.2` Bootstrap `./apps/customer` and `./apps/admin` as separate Next.js 14 TypeScript apps with aligned npm scripts (`dev`, `build`, `lint`, `test`, `typecheck`).
 - `M0.3` Configure husky, lint-staged, commitlint, GitHub Actions (or equivalent) to run lint/test/typecheck plus caching for each app.
 - `M0.4` Author developer setup docs, CI badge info, and sample Storybook/test harness instructions to validate both component pipelines.
 
@@ -134,14 +134,14 @@ Exit criteria: Running backend swap stub only requires adapter config; e2e tests
 Goal: Initialize the twin Next.js apps, shared configs, and planning docs.
 Context: Repository is empty; spec mandates two standalone client apps with consistent tooling.
 Tasks:
-1) Scaffold `./customer` and `./admin` as separate Next.js 14 TypeScript apps (via create-next-app or manual) with npm scripts for dev/build/lint/test/typecheck.
+1) Scaffold `./apps/customer` and `./apps/admin` via `npx create-next-app@latest --ts --tailwind`, ensuring npm scripts for dev/build/lint/test/typecheck remain aligned.
 2) Create shared root assets: `.editorconfig`, `.gitignore`, base README, ADR/glossary stubs referencing docs/specs/spec.md, plus guidance on how the two apps stay in sync (tsconfig/eslint/prettier copies or templates).
 3) Add placeholder pages and a lightweight smoke test in each app to ensure `npm test` exercises the default routes end-to-end.
 Acceptance:
-- Running `npm install && npm test` inside both `./customer` and `./admin` succeeds and hits each placeholder page.
+- Running `npm install && npm test` inside both `./apps/customer` and `./apps/admin` succeeds and hits each placeholder page.
 - README documents architecture overview (dual-app layout) and next steps.
 Outcome:
-- _Pending_
+- _Completed (workspace restructured under `apps/` with Tailwind create-next-app scaffolds)_
 ```
 
 ### Prompt 02 — Tooling, CI, and Developer Workflow

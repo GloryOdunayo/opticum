@@ -14,7 +14,7 @@ Thanks for helping build Opticum, a dual customer/admin loan-management experien
 ## 2. Development Environment
 - Required toolchain: Node.js LTS, npm, Git, and a modern browser. Docker is optional unless you add preview tooling.
 - Repo layout (per spec):
-  - `customer/` & `admin/` — Next.js 14 App Router apps.
+  - `apps/customer` & `apps/admin` — Next.js 14 App Router apps (create-next-app + Tailwind).
   - `docs/` — specs, prompt plans, RFCs.
   - Shared configs/lib packages will live under `packages/` as the project matures.
 - Bootstrap commands:
@@ -53,7 +53,7 @@ Thanks for helping build Opticum, a dual customer/admin loan-management experien
 - **Next.js/TypeScript (client apps)**
   - Enable `strict` TypeScript. Avoid `any`.
   - Prefer React Server Components where viable, but remember mocked persistence lives in the browser. Isolate browser-only logic to client components/hooks.
-  - Use shared component libraries/tokens; do not fork design language per app.
+  - Use shared component libraries/tokens; do not fork design language per app, and keep Tailwind utility classes aligned with the shared tokens.
   - Mock APIs must stay in `lib/fakeApi` (or equivalent) and support latency simulation plus reset semantics.
   - Shared state belongs in Redux Toolkit slices (`src/state/`); keep reducers, thunks, and selectors mirrored between customer/admin apps.
 - **Testing**

@@ -51,7 +51,7 @@ All built using **Next.js + TypeScript**, **App Router**, and a fully mocked env
 
 **Goal:** Establish the workspace, folder structure, and core scaffolding.
 
-* Set up two standalone Next.js apps (`./admin`, `./customer`)
+* Set up two standalone Next.js apps (`./apps/admin`, `./apps/customer`) scaffolded via `create-next-app --ts --tailwind`
 * Install Next.js 14+ with App Router
 * Configure TypeScript, ESLint, Prettier
 * Implement baseline layouts for both apps
@@ -163,6 +163,7 @@ The Customer App is designed for **Retail & SME borrowers**. It should include:
 * All business logic must remain **client-side** or in **mock route handlers**
 * Must behave as if calling a real backend (async operations, states)
 * LocalStorage used for persistence
+* Styling implemented exclusively with Tailwind CSS utility classes
 * Shared state handled through Redux Toolkit slices + selectors to keep onboarding, applications, and repayment UX in sync
 * Page transitions must reflect real-world flows
 
@@ -223,6 +224,7 @@ The Admin App is built for internal Opticum staff.
 * Uses same mock backend as Customer
 * Role-based access system (client side)
 * Redux Toolkit store orchestrates queues, audits, and cross-module status updates
+* Tailwind CSS powers all admin UI layouts/components
 * Realistic pipeline views (Underwriting, Collections, Compliance)
 
 ---
@@ -232,7 +234,7 @@ The Admin App is built for internal Opticum staff.
 Below is the **complete project folder structure** with tree symbols and comments. The Customer and Admin apps live as separate Next.js projects at the repository root.
 
 ```
-customer/                                  # Customer-facing borrower app
+apps/customer/                                  # Customer-facing borrower app
 ├─ next.config.js                           # Next.js config
 ├─ tsconfig.json                            # TS config
 ├─ package.json                             # npm scripts for customer app
@@ -249,7 +251,7 @@ customer/                                  # Customer-facing borrower app
 │  └─ tests/                                # Unit tests
 └─ README.md                                # Customer-specific notes
 
-admin/                                     # Internal staff app
+apps/admin/                                     # Internal staff app
 ├─ next.config.js
 ├─ tsconfig.json
 ├─ package.json
