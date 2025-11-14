@@ -12,7 +12,7 @@
 
 ### Track A — Workspace Foundations & Governance (Spec §§3.1, 6)
 - Establish consistent npm tooling across both standalone apps, shared configs, lint/test scripts, husky hooks, documentation, and onboarding materials.
-- Provide developer tooling (Storybook optional), test harnesses (Vitest/Jest/Playwright), and CI scripts ensuring fast feedback.
+- Provide developer tooling (Storybook optional), test harnesses (Jest/Playwright), and CI scripts ensuring fast feedback.
 
 ### Track B — Mock Infrastructure & Domain Modeling (Spec §§3.2, 7)
 - Define domain models (users, products, loans, applications, tickets), seed data, local persistence helpers, Redux stores/slices, fake API client, simulated latency, reset tools, and diagnostics.
@@ -144,7 +144,7 @@ Outcome:
 - _Completed (workspace restructured under `apps/` with Tailwind create-next-app scaffolds)_
 ```
 
-### Prompt 02 — Tooling, CI, and Developer Workflow
+### Prompt 02 — Tooling, CI, and Developer Workflow ✅
 ```text
 Goal: Configure linting, formatting, husky hooks, and CI automation.
 Context: Workspace exists without enforced standards.
@@ -156,7 +156,7 @@ Acceptance:
 - Hooks block lint/test failures; CI pipeline green.
 - CONTRIBUTING.md/README describe workflow and verification commands.
 Outcome:
-- _Pending_
+- _Completed (root tooling + Husky/CI pipeline run lint/test/typecheck)_
 ```
 
 ### Prompt 03 — Shared Design System & UI Shells
