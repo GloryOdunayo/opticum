@@ -1,6 +1,6 @@
 # INSTRUCTION
 1. Open **@CONTRIBUTING.md** to know how to contribute to this codebase.
-2. Ensure to check your execution plan with User (@sa-adebayo) before kickstarting implementation.
+2. Ensure to check your execution plan with User (@GloryOdunayo) before kickstarting implementation.
 
 ## ACTIONS
 1. Open **@prompt_plan.md** and identify any prompts not marked as completed.

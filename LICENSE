@@ -1,0 +1,76 @@
+Opticum Client Application License
+==================================
+
+Copyright (c) 2024 Queola (an EnnovateLab company).
+
+This repository and its contents (the “Software”) are proprietary to Opticum
+and its affiliates. The Software consists solely of **client-facing
+applications, mock data, and supporting documentation** designed to simulate
+loan management workflows without a production backend.
+
+License Grant
+-------------
+Opticum (through Queola) grants you a non-exclusive, non-transferable,
+non-sublicensable, revocable license to use, copy, and modify the Software
+solely within your organization and only for internal evaluation,
+demonstration, or development activities related to Opticum’s client-facing
+experiences. Any other use, including redistribution, resale, hosting as a
+service, or integration with a production backend, is prohibited unless
+expressly authorised in writing by Queola.
+
+Restrictions
+------------
+You may not:
+
+1. Disclose, publish, or otherwise make available the Software or any portion
+   of it to third parties without Opticum’s prior written consent.
+2. Remove or alter proprietary notices, logos, or attribution statements.
+3. Use the Software to build or operate products that compete with Opticum’s
+   borrower or admin applications.
+4. Introduce real customer data, secrets, or regulated information into the
+   Software unless you have written approval from Opticum.
+5. Reverse engineer, decompile, or disassemble any compiled artifacts except
+   where permitted by applicable law.
+
+Ownership
+---------
+Opticum/Queola retains all right, title, and interest in and to the Software,
+including all intellectual property rights. No rights are granted other than
+those expressly stated in this License.
+
+Confidentiality
+---------------
+Treat the Software, mock data, and associated documentation as confidential.
+You agree to protect this information with at least the same care you apply to
+your own confidential materials, and not less than reasonable care.
+
+Disclaimer
+----------
+THE SOFTWARE IS PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, WHETHER EXPRESS,
+IMPLIED, STATUTORY, OR OTHERWISE. OPTICUM AND QUEOLA DISCLAIM ALL IMPLIED
+WARRANTIES, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE,
+AND NON-INFRINGEMENT. Because the Software contains only mock frontend
+functionality, it must not be used to make production lending decisions.
+
+Limitation of Liability
+-----------------------
+IN NO EVENT WILL OPTICUM OR QUEOLA BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
+SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR ANY LOST
+PROFITS OR REVENUE, ARISING FROM OR RELATED TO THE SOFTWARE OR ITS USE, EVEN IF
+THEY HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+Termination
+-----------
+Opticum/Queola may terminate this License at any time if you breach its terms.
+Upon termination you must cease all use of the Software and destroy any copies
+or derivative works.
+
+Governing Law
+-------------
+This License is governed by the laws of the jurisdiction where Opticum is
+headquartered, without regard to conflict-of-law principles.
+
+Contact
+-------
+For questions, additional permissions, or commercial licensing, contact
+Queola at engineering@queola.com.

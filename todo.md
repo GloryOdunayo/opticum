@@ -2,7 +2,7 @@
 
 Track progress against the Opticum prompt plan. Mark items complete only when code, tests, docs, and wiring are delivered.
 
-## Milestone M0 — Planning, Workspace & Tooling
+## Milestone M0 — Planning & Dual-App Tooling
 - [ ] P01: Workspace bootstrap & planning artifacts.
 - [ ] P02: Tooling, CI, and developer workflow automation.
 
@@ -34,3 +34,5 @@ Notes:
 - Link PRs/issues beside items when they land.
 - Keep developer tooling, documentation, and demo scripts synced with each completed prompt.
 - Re-run regression + smoke suites after every milestone before advancing.
+- Maintain `./customer` and `./admin` as separate Next.js apps when implementing tasks.
+- Ensure Redux Toolkit state slices remain consistent across both apps as prompts complete.
