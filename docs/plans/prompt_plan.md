@@ -129,7 +129,7 @@ Exit criteria: Running backend swap stub only requires adapter config; e2e tests
 
 ## 6. LLM Prompt Series (Sequential, Integrated)
 
-### Prompt 01 — Workspace Bootstrap & Planning
+### Prompt 01 — Workspace Bootstrap & Planning ✅
 ```text
 Goal: Initialize the twin Next.js apps, shared configs, and planning docs.
 Context: Repository is empty; spec mandates two standalone client apps with consistent tooling.
