@@ -51,11 +51,12 @@ All built using **Next.js + TypeScript**, **App Router**, and a fully mocked env
 
 **Goal:** Establish the workspace, folder structure, and core scaffolding.
 
-* Set up monorepo (`apps/admin`, `apps/customer`)
+* Set up two standalone Next.js apps (`./admin`, `./customer`)
 * Install Next.js 14+ with App Router
 * Configure TypeScript, ESLint, Prettier
 * Implement baseline layouts for both apps
 * Implement mock authentication (role picker)
+* Introduce shared client-side state management (Redux Toolkit + slices) to coordinate mock auth/session data between apps
 
 📌 **Deliverables:**
 
@@ -162,6 +163,7 @@ The Customer App is designed for **Retail & SME borrowers**. It should include:
 * All business logic must remain **client-side** or in **mock route handlers**
 * Must behave as if calling a real backend (async operations, states)
 * LocalStorage used for persistence
+* Shared state handled through Redux Toolkit slices + selectors to keep onboarding, applications, and repayment UX in sync
 * Page transitions must reflect real-world flows
 
 ## **4.3 UI/UX Requirements**
@@ -220,46 +222,57 @@ The Admin App is built for internal Opticum staff.
 
 * Uses same mock backend as Customer
 * Role-based access system (client side)
+* Redux Toolkit store orchestrates queues, audits, and cross-module status updates
 * Realistic pipeline views (Underwriting, Collections, Compliance)
 
 ---
 
 # 6. Project Folder Structure
 
-Below is the **complete project folder structure** with tree symbols and comments.
+Below is the **complete project folder structure** with tree symbols and comments. The Customer and Admin apps live as separate Next.js projects at the repository root.
 
 ```
-apps/
-├─ customer/                               # Customer-facing borrower app
-│  ├─ next.config.js                        # Next.js config
-│  ├─ tsconfig.json                         # TS config
-│  ├─ public/                               # Static assets
-│  ├─ src/
-│  │  ├─ app/                               # App Router
-│  │  ├─ components/                        # Reusable components
-│  │  ├─ hooks/                             # Data-fetching & utilities
-│  │  ├─ lib/                               # fakeApi + local persistence
-│  │  ├─ server/                            # SSR helper utilities
-│  │  ├─ data/                              # Seed data for mocks
-│  │  ├─ styles/                            # Global styles
-│  │  └─ tests/                             # Unit tests
-│  └─ package.json
-│
-├─ admin/                                  # Internal staff app
-│  ├─ next.config.js
-│  ├─ tsconfig.json
-│  ├─ public/
-│  ├─ src/
-│  │  ├─ app/                               # App Router
-│  │  ├─ components/                        # Feature modules
-│  │  ├─ hooks/
-│  │  ├─ lib/                               # fakeApi + rbac
-│  │  ├─ data/
-│  │  ├─ styles/
-│  │  └─ tests/
-│  └─ package.json
-│
-└─ package.json                             # Workspace root config
+customer/                                  # Customer-facing borrower app
+├─ next.config.js                           # Next.js config
+├─ tsconfig.json                            # TS config
+├─ package.json                             # npm scripts for customer app
+├─ public/                                  # Static assets
+├─ src/
+│  ├─ app/                                  # App Router
+│  ├─ components/                           # Reusable components
+│  ├─ hooks/                                # Data-fetching & utilities
+│  ├─ lib/                                  # fakeApi + local persistence
+│  ├─ state/                                # Redux store + slices
+│  ├─ server/                               # SSR helper utilities
+│  ├─ data/                                 # Seed data for mocks
+│  ├─ styles/                               # Global styles
+│  └─ tests/                                # Unit tests
+└─ README.md                                # Customer-specific notes
+
+admin/                                     # Internal staff app
+├─ next.config.js
+├─ tsconfig.json
+├─ package.json
+├─ public/
+├─ src/
+│  ├─ app/                                  # App Router
+│  ├─ components/                           # Feature modules
+│  ├─ hooks/
+│  ├─ lib/                                  # fakeApi + rbac
+│  ├─ state/                                # Redux store + slices for admin workflows
+│  ├─ server/                               # SSR helper utilities + mock tasks
+│  ├─ data/
+│  ├─ styles/
+│  └─ tests/
+└─ README.md
+
+docs/                                      # Specifications & plans
+├─ specs/
+│  ├─ spec.md
+│  └─ folder.spec.md
+├─ plans/
+│  └─ prompt_plan.md
+└─ CONTRIBUTING.md
 ```
 
 ---

@@ -1,7 +1,8 @@
 # Opticum Implementation Blueprint (Spec 2025-02)
 
 ## Context & Objectives
-- Opticum delivers dual interfaces (Customer + Admin) built on Next.js 14 App Router, pnpm monorepo, strict TypeScript, ESLint, and Prettier (`docs/specs/spec.md` §§1–3, 6).
+- Opticum delivers dual interfaces (Customer + Admin) built on Next.js 14 App Router, maintained as two standalone apps (`./customer`, `./admin`) with strict TypeScript, ESLint, and Prettier (`docs/specs/spec.md` §§1–3, 6).
+- Client-side state must be coordinated via Redux Toolkit stores + slices in each app to keep mock auth, applications, and operations synchronized.
 - No backend exists; all flows must rely on mock infrastructure: fake API client, local persistence, seed data, simulated latency, and optional route handlers (`spec.md` §§2, 3, 7).
 - Customer journeys include onboarding, loan discovery, calculator, multi-step applications, status tracking, repayment simulation, and support/ticketing (`spec.md` §4).
 - Admin workflows span dashboards, RBAC, KYC/KYB, underwriting, collections, compliance, finance/operations, and product configuration, all sharing the fake backend (`spec.md` §5).
@@ -10,11 +11,11 @@
 ## 1. Blueprint Overview (Tracks & Focus Areas)
 
 ### Track A — Workspace Foundations & Governance (Spec §§3.1, 6)
-- Establish pnpm monorepo, shared configs, lint/test scripts, husky hooks, documentation, and onboarding materials.
+- Establish consistent npm tooling across both standalone apps, shared configs, lint/test scripts, husky hooks, documentation, and onboarding materials.
 - Provide developer tooling (Storybook optional), test harnesses (Vitest/Jest/Playwright), and CI scripts ensuring fast feedback.
 
 ### Track B — Mock Infrastructure & Domain Modeling (Spec §§3.2, 7)
-- Define domain models (users, products, loans, applications, tickets), seed data, local persistence helpers, fake API client, simulated latency, reset tools, and diagnostics.
+- Define domain models (users, products, loans, applications, tickets), seed data, local persistence helpers, Redux stores/slices, fake API client, simulated latency, reset tools, and diagnostics.
 
 ### Track C — Customer Experience & Loan Lifecycle (Spec §4)
 - Implement borrower authentication mock, onboarding wizard, dashboards, product discovery, calculators, application flows, status tracking, repayment simulation, and support center.
@@ -31,9 +32,9 @@
 ## 2. Incremental Delivery Plan (Milestones)
 
 **Milestone M0 — Planning, Workspace & Tooling (Track A)**  
-Goal: Codify architecture decisions, bootstrap pnpm workspace, shared configs, lint/test/format scripts, CI skeleton, and developer docs.  
-Scope highlights: Root package setup, shared tsconfig/eslint/prettier, husky hooks, README/ADR seeds, Storybook/Testing Library scaffolds.  
-Exit criteria: `pnpm lint`, `pnpm test`, `pnpm typecheck` succeed in CI; developers understand repo layout via docs.
+Goal: Codify architecture decisions, scaffold both standalone apps, align shared configs, lint/test/format scripts, CI skeleton, and developer docs.  
+Scope highlights: Dual Next.js bootstraps (`./customer`, `./admin`), shared tsconfig/eslint/prettier guidance, husky hooks, README/ADR seeds, Storybook/Testing Library scaffolds.  
+Exit criteria: `npm run lint`, `npm test`, `npm run typecheck` succeed within each app’s CI workflow; developers understand repo layout via docs.
 
 **Milestone M1 — Mock Infrastructure Backbone (Track B/E)**  
 Goal: Provide domain contracts, seed data, local persistence, fake API client, simulated latency, reset/inspector utilities.  
@@ -79,15 +80,16 @@ Exit criteria: Running backend swap stub only requires adapter config; e2e tests
 
 ### M0 — Planning, Workspace & Tooling
 - `M0.1` Record architecture decisions, glossary, and contribution guidelines referencing `docs/specs/spec.md`.
-- `M0.2` Initialize pnpm workspace with shared tsconfig/eslint/prettier, base scripts (`dev`, `build`, `lint`, `test`, `typecheck`).
-- `M0.3` Configure husky, lint-staged, commitlint, GitHub Actions (or equivalent) to run lint/test/typecheck plus caching.
-- `M0.4` Author developer setup docs, CI badge info, and sample Storybook/test harness to validate component pipeline.
+- `M0.2` Bootstrap `./customer` and `./admin` as separate Next.js 14 TypeScript apps with aligned npm scripts (`dev`, `build`, `lint`, `test`, `typecheck`).
+- `M0.3` Configure husky, lint-staged, commitlint, GitHub Actions (or equivalent) to run lint/test/typecheck plus caching for each app.
+- `M0.4` Author developer setup docs, CI badge info, and sample Storybook/test harness instructions to validate both component pipelines.
 
 ### M1 — Mock Infrastructure Backbone
 - `M1.1` Define TypeScript types/interfaces for users, products, applications, loans, tickets, audit logs.
 - `M1.2` Create seed data modules and deterministic fixture loader with snapshot/unit tests.
 - `M1.3` Implement `localPersist` helper handling browser/server contexts, hydration, schema migrations, and tests.
 - `M1.4` Build fake API client with CRUD + state transitions (approve, decline, disburse, repay, ticket reply) plus latency simulation and dev reset tools (UI + CLI).
+- `M1.5` Stand up Redux Toolkit store configuration and initial slices (auth/session, loans/applications, support) for both apps, with selectors/tests.
 
 ### M2 — Customer Foundations
 - `M2.1` Establish design tokens, typography scale, spacing, and global styles shared between apps.
@@ -129,15 +131,15 @@ Exit criteria: Running backend swap stub only requires adapter config; e2e tests
 
 ### Prompt 01 — Workspace Bootstrap & Planning
 ```text
-Goal: Initialize the pnpm monorepo, shared configs, and planning docs.
-Context: Repository is empty; spec mandates dual Next.js apps with shared tooling.
+Goal: Initialize the twin Next.js apps, shared configs, and planning docs.
+Context: Repository is empty; spec mandates two standalone client apps with consistent tooling.
 Tasks:
-1) Add root package.json with workspace definitions (`apps/*`), scripts (dev, build, lint, test, typecheck), and pnpm workspace configuration.
-2) Create tsconfig.base.json, ESLint/Prettier configs, `.editorconfig`, `.gitignore`, base README, and ADR/glossary stubs referencing docs/specs/spec.md.
-3) Scaffold placeholder Next.js apps (customer/admin) with minimal pages and add a smoke test to ensure the workspace works end-to-end.
+1) Scaffold `./customer` and `./admin` as separate Next.js 14 TypeScript apps (via create-next-app or manual) with npm scripts for dev/build/lint/test/typecheck.
+2) Create shared root assets: `.editorconfig`, `.gitignore`, base README, ADR/glossary stubs referencing docs/specs/spec.md, plus guidance on how the two apps stay in sync (tsconfig/eslint/prettier copies or templates).
+3) Add placeholder pages and a lightweight smoke test in each app to ensure `npm test` exercises the default routes end-to-end.
 Acceptance:
-- `pnpm install && pnpm test` succeeds and exercises both apps’ placeholder pages.
-- README documents architecture overview and next steps.
+- Running `npm install && npm test` inside both `./customer` and `./admin` succeeds and hits each placeholder page.
+- README documents architecture overview (dual-app layout) and next steps.
 Outcome:
 - _Pending_
 ```
@@ -187,17 +189,18 @@ Outcome:
 - _Pending_
 ```
 
-### Prompt 05 — Domain Models, Seeds, and Persistence Utilities
+### Prompt 05 — Domain Models, Seeds, Persistence, and State Store
 ```text
-Goal: Codify domain types, seed data, and local persistence helper.
+Goal: Codify domain types, seed data, Redux store, and local persistence helper.
 Context: Auth exists; need data backbone.
 Tasks:
 1) Define TypeScript types/interfaces for users, products, loans, applications, tickets, audit logs.
 2) Create deterministic seed data modules with fixtures covering multiple borrowers, loan stages, and admin roles.
 3) Implement `localPersist` helper handling serialization, schema versioning, SSR-safe guards, and hydration tests.
+4) Configure Redux Toolkit store in each app (shared pattern) plus foundational slices (auth/session, onboarding, loans) wired to fake API thunks.
 Acceptance:
-- Type/unit tests validate interfaces and persistence helper behavior.
-- Seeds load without mutation across reloads.
+- Type/unit tests validate interfaces, persistence helper behavior, and slice reducers/selectors.
+- Seeds load without mutation across reloads; store initializes with seed-backed defaults.
 Outcome:
 - _Pending_
 ```

@@ -4,10 +4,10 @@ This document describes the recommended project folder structure for **both** th
 
 ---
 
-# Customer App — `apps/customer/`
+# Customer App — `customer/`
 
 ```
-apps/customer/
+customer/
 ├─ next.config.js                         # Next.js config for Customer app
 ├─ tsconfig.json                           # TypeScript config
 ├─ .env.local.example                      # Example environment variables
@@ -91,6 +91,12 @@ apps/customer/
 │  │  ├─ localPersist.client.ts            # LocalStorage helpers
 │  │  └─ demoAuth.client.ts                # Mock authentication
 │  │
+│  ├─ state/                               # Redux Toolkit store + slices
+│  │  ├─ store.ts                          # configureStore + middleware
+│  │  ├─ onboarding.slice.ts               # Onboarding state + thunks
+│  │  ├─ loans.slice.ts                    # Loan + application state
+│  │  └─ support.slice.ts                  # Support/ticket interactions
+│  │
 │  ├─ server/                              # Server utilities
 │  │  ├─ seed.ts                           # SSR seed bootstrapping
 │  │  └─ sampleLoader.ts                   # Load seed files
@@ -114,10 +120,10 @@ apps/customer/
 
 ---
 
-# Admin App — `apps/admin/`
+# Admin App — `admin/`
 
 ```
-apps/admin/
+admin/
 ├─ next.config.js                           # Next.js config for Admin app
 ├─ tsconfig.json                             # TypeScript config
 ├─ .env.local.example                        # Example environment variables
@@ -185,6 +191,46 @@ apps/admin/
 │  │  ├─ domain.d.ts
 │  │  └─ rbac.d.ts
 │  │
-│  ├─ components/                            #
-
+│  ├─ components/                            # Reusable admin UI components
+│  │  ├─ tables/
+│  │  │  └─ pipeline-table.client.tsx
+│  │  ├─ cards/
+│  │  │  └─ metric-card.client.tsx
+│  │  └─ layouts/
+│  │     └─ admin-shell.client.tsx
+│  │
+│  ├─ hooks/                                 # Admin hooks
+│  │  ├─ useRbac.ts
+│  │  ├─ useQueues.ts
+│  │  └─ useTickets.ts
+│  │
+│  ├─ lib/                                   # Shared utilities (fake API + RBAC)
+│  │  ├─ fakeApi.client.ts
+│  │  ├─ localPersist.client.ts
+│  │  └─ roleMatrix.ts
+│  │
+│  ├─ server/                                # SSR helpers + mock tasks
+│  │  ├─ seed.ts
+│  │  └─ auditFeed.ts
+│  │
+│  ├─ state/                                 # Redux Toolkit store + slices
+│  │  ├─ store.ts
+│  │  ├─ kyc.slice.ts
+│  │  ├─ underwriting.slice.ts
+│  │  └─ collections.slice.ts
+│  │
+│  ├─ data/                                  # Seed data
+│  │  ├─ loans.ts
+│  │  ├─ applications.ts
+│  │  └─ tickets.ts
+│  │
+│  ├─ styles/                                # CSS layers
+│  │  ├─ globals.css
+│  │  └─ admin.module.css
+│  │
+│  └─ tests/                                 # Tests
+│     ├─ rbac.spec.ts
+│     └─ fakeApi.spec.ts
+│
+└─ package.json
 ```
